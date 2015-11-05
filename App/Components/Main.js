@@ -1,4 +1,5 @@
 import React, { Component } from 'react-native';
+import { getRepos, getBio } from '../../Utils/api';
 
 const {
 	View,
@@ -28,11 +29,14 @@ export class Main extends Component {
 	}
 
 	handleSubmit(){
-		// update our indicatorIOS spinner
 		this.setState({
 			isLoading: true
 		});
 		console.log("SUBMIT", this.state.username);
+    getBio(this.state.username)
+      .then(function(res){
+        console.log(res)
+      })
 		//fetch data from github
 		//reroute to the next route passing in github information
 	}
