@@ -9,7 +9,8 @@ const {
   View,
 } = React;
 
-import {Main} from './App/Components/Main';
+import Main from './App/Components/Main';
+
 
 class githubNotes extends Component {
   render() {

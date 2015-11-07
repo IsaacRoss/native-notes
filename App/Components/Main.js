@@ -1,5 +1,6 @@
 import React, { Component } from 'react-native';
 import { getRepos, getBio } from '../../Utils/api';
+import Dashboard from './Dashboard'
 
 const {
 	View,
@@ -12,7 +13,9 @@ const {
 
 
 
-export class Main extends Component {
+
+
+export default class Main extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -32,10 +35,26 @@ export class Main extends Component {
 		this.setState({
 			isLoading: true
 		});
-		console.log("SUBMIT", this.state.username);
+
     getBio(this.state.username)
-      .then(function(res){
-        console.log(res)
+      .then((res) => {
+        if(res.message === 'Not Found'){
+          this.setState({
+            error: 'User not found',
+            isLoading: false
+          });
+        } else {
+          this.props.navigator.push({
+            title: res.name || 'Select an option',
+            component: Dashboard,
+            passProps: {userInfo: res}
+          });
+          this.setState({
+            loading: false,
+            error: false,
+            username: ''
+          })
+        }
       })
 		//fetch data from github
 		//reroute to the next route passing in github information
