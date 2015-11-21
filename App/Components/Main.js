@@ -64,7 +64,7 @@ export default class Main extends Component {
 		)
 		return (
 			<View style ={styles.mainContainer}>
-				<Text style={styles.title}> Search for a Github User</Text>
+				<Text style={styles.title}> Search for a GitHub User</Text>
 				<TextInput
 					style={styles.searchInput}
 					value={this.state.username}

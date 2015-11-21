@@ -1,5 +1,5 @@
 import React, { Component } from 'react-native';
-
+import { Profile } from './Profile';
 const {
   View,
   Text,
@@ -34,6 +34,10 @@ export default class Dashboard extends Component {
   }
   goToProfile() {
     console.log('go to profile');
+    this.props.navigator.push({
+      component: Profile,
+      passProps: { userInfo: this.props.userInfo}
+    })
   }
 
   goToRepos () {
