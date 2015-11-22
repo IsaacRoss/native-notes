@@ -1,5 +1,8 @@
 import React, { Component } from 'react-native';
 import { Profile } from './Profile';
+import { Repositories } from './Repositories';
+import { getRepos } from '../../Utils/api';
+
 const {
   View,
   Text,
@@ -33,7 +36,6 @@ export default class Dashboard extends Component {
     return obj;
   }
   goToProfile() {
-    console.log('go to profile');
     this.props.navigator.push({
       component: Profile,
       passProps: { userInfo: this.props.userInfo}
@@ -41,7 +43,20 @@ export default class Dashboard extends Component {
   }
 
   goToRepos () {
-    console.log('go to repos');
+    getRepos(this.props.userInfo.login)
+      .then((res) => {
+        this.props.navigator.push({
+          component: Repositories,
+          passProps: { 
+            userInfo: this.props.userInfo,
+            repos: res
+          }
+        })
+      })
+    // this.props.navigator.push({
+    //   component: Repositories,
+    //   passProps: { userInfo: this.props.userInfo}
+    // })
   }
 
   goToNotes () {
