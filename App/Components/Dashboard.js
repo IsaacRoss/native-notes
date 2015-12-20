@@ -53,10 +53,6 @@ export default class Dashboard extends Component {
           }
         })
       })
-    // this.props.navigator.push({
-    //   component: Repositories,
-    //   passProps: { userInfo: this.props.userInfo}
-    // })
   }
 
   goToNotes () {

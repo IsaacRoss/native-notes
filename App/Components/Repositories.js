@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react-native';
 import { Badge } from './Badge';
 import { Separator } from './Helpers/Separator';
+import { Web } from './Helpers/WebView'
 
 const {
   View,
@@ -36,8 +37,14 @@ let styles = StyleSheet.create({
 });
 
 export class Repositories extends Component {
-  handlePress() {
-    console.log('yeah')
+  handlePress(url) {
+    this.props.navigator.push({
+      component: Web,
+      title: 'Web View',
+      passProps: {
+        url: url
+      }
+    })
   }
   render () {
     var repos = this.props.repos;
@@ -47,7 +54,7 @@ export class Repositories extends Component {
         <View key={index}>
           <View style={styles.container}>
             <TouchableHighlight
-              onPress={() => this.handlePress()}
+              onPress={() => this.handlePress(repos[index].html_url)}
               underlayColor='transparent'>
               <Text style={styles.name}>{repos[index].name}</Text>
             </TouchableHighlight>
